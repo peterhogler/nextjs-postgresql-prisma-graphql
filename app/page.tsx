@@ -4,7 +4,7 @@ import Form from "./components/form";
 
 async function getUsersFromDB() {
     const users = await prisma.user.findMany();
-    return users;
+    return users as User[];
 }
 
 export default async function Home() {

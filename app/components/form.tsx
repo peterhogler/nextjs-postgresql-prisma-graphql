@@ -1,20 +1,32 @@
 "use client";
 
+import { createUserToDB } from "@/server/actions/user.actions";
 import { usePathname } from "next/navigation";
 
-import { createUserToDB } from "@/server/actions/user.actions";
-
 export default function Form() {
-    const pathname = usePathname()
+    const pathname = usePathname();
 
+    //FUTURE TODO - React Hook Forms and Zod (Form Validation)
     async function createUser(formData: FormData) {
-        
-        const user = {
-            name: formData.get("name"),
-            email: formData.get("email"),
+        const name = formData.get("name") as string;
+        const email = formData.get("email") as string;
+
+        if (!name || !email) return;
+
+        const user: User = {
+            name,
+            email,
         };
 
-        await createUserToDB(user, pathname);
+        try {
+            await createUserToDB(user, pathname);
+        } catch (error) {
+            if (error instanceof Error) {
+                throw new Error(`Unable to create user: ${error.message}`);
+            } else {
+                throw new Error("Unknown error while trying to create user to DB - Client");
+            }
+        }
     }
 
     return (
