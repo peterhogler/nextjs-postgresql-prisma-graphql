@@ -11,8 +11,14 @@ async function createUserToDB(user: any, pathname: string) {
     revalidatePath(pathname);
 }
 
-async function deleteUserFromDB(id?: string) {
-    console.log("clicked");
+async function deleteUserFromDB(userId: string, pathname: string) {
+    await prisma.user.delete({
+        where: {
+            id: userId,
+        },
+    });
+
+    revalidatePath(pathname);
 }
 
 export { createUserToDB, deleteUserFromDB };

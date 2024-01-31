@@ -1,7 +1,6 @@
 import ListDeleteButton from "./list-delete-button";
 
 export default function List({ users }: { users: any }) {
-    console.log(users);
     return (
         <div className="space-y-2">
             {users.map((user: any) => {
