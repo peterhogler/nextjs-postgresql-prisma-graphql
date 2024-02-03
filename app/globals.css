@@ -4,10 +4,10 @@
 
 @layer base {
     html {
-        @apply h-[100dvh];
+        @apply h-[100dvh] antialiased;
     }
 
     body {
-        @apply flex flex-col h-full;
+        @apply flex flex-col h-full bg-black text-white;
     }
 }
