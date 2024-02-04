@@ -5,7 +5,7 @@ import "./globals.css";
 const karla = Karla({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-    title: "X. Clone by / Peter ",
+    title: "X Clone by / Peter ",
     description: "X Clone",
 };
 

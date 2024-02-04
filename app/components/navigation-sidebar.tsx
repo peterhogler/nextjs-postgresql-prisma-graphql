@@ -45,7 +45,9 @@ export default function NavigationSidebar() {
             <button className="font-bold text-xl bg-sky-500 w-4/5 py-2 mt-6 rounded-full ">Post</button>
             <div className="flex w-[95%] items-center justify-between mt-auto hover:bg-neutral-900 px-2 pr-5 py-2 rounded-full ">
                 <button className="flex items-center gap-3">
-                    <div className="h-10 w-10 rounded-full bg-gray-50"></div>
+                    <div className="border-2 rounded-full ">
+                        <FiUser size={32} />
+                    </div>
                     <div className="leading-tight text-left">
                         <p className=" font-bold">Peter Hogler</p>
                         <p className="text-neutral-500">@Nightrider141</p>
