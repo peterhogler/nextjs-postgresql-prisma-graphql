@@ -8,6 +8,11 @@
     }
 
     body {
-        @apply flex flex-col h-full bg-black text-white;
+        @apply flex flex-col h-full bg-black text-white  m-auto;
+    }
+
+    input,
+    textarea {
+        @apply bg-transparent w-full;
     }
 }
