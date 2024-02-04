@@ -43,7 +43,9 @@ export default function TrendingSidebar() {
                             <button className="ml-auto px-4 py-1 bg-slate-50 text-black rounded-full font-bold">Follow</button>
                         </div>
                     </div>
-                    <button className="text-sky-500 mt-3">Show more</button>
+                    <div className="px-4 pb-3">
+                        <button className="text-sky-500 mt-3">Show more</button>
+                    </div>
                 </div>
             </div>
             <div className=" bg-zinc-900 rounded-2xl space-y-3">

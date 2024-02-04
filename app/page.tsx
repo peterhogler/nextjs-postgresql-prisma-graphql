@@ -26,7 +26,7 @@ export default function Home() {
                             <button className="hover:bg-neutral-900 h-full p-4">Following</button>
                         </div>
                     </div>
-                    <div className="border-b border-neutral-700 p-3">
+                    <div className="border-b border-neutral-700 pt-4 pb-3 px-3">
                         <div className="flex gap-4">
                             <div className="h-max">
                                 <div className="border-2 rounded-full ">
@@ -40,7 +40,7 @@ export default function Home() {
                                 <hr className=" border-neutral-700 mb-3"></hr>
                                 <div className="flex items-center ">
                                     <div className="relative">
-                                        <div className="hover:bg-sky-900/50 rounded-full p-1" onClick={() => setShowEmojiPicker(!showEmojiPicker)}>
+                                        <div className="hover:bg-sky-900/50 rounded-full p-1 cursor-pointer" onClick={() => setShowEmojiPicker(!showEmojiPicker)}>
                                             <FiSmile className="text-sky-500" size={20} />
                                         </div>
                                         {showEmojiPicker && (
@@ -49,12 +49,14 @@ export default function Home() {
                                             </div>
                                         )}
                                     </div>
-                                    <button className="font-bold ml-auto bg-sky-500 rounded-full px-4 py-2">Post</button>
+                                    <button className="font-bold ml-auto bg-sky-500 rounded-full px-4 py-2 disabled:opacity-40 disabled:cursor-not-allowed" disabled={!inputValue}>
+                                        Post
+                                    </button>
                                 </div>
                             </form>
                         </div>
                     </div>
-                    <div className="py-8 px-5 border-b border-neutral-700 space-y-4">
+                    <div className="py-8 px-8 border-b border-neutral-700 space-y-4">
                         <h1 className="text-2xl font-bold">Your are currently not signed in 🥹</h1>
                         <p className="text-neutral-500">
                             You are not currently signed in. Which means your account is read-only mode. Please sign in to be able to create posts. You can sign in here{" "}

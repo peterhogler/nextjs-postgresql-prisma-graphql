@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { FiBell, FiBookmark, FiHome, FiMessageCircle, FiMoreHorizontal, FiSearch, FiUser, FiUsers } from "react-icons/fi";
 
 export default function NavigationSidebar() {
+    const user = false;
     const pathname = usePathname();
     console.log(pathname);
     return (
@@ -42,7 +43,9 @@ export default function NavigationSidebar() {
                     Profile
                 </button>
             </div>
-            <button className="font-bold text-xl bg-sky-500 w-4/5 py-2 mt-6 rounded-full ">Post</button>
+            <button className="font-bold text-xl bg-sky-500 w-4/5 py-2 mt-6 rounded-full disabled:opacity-40 disabled:cursor-not-allowed " disabled={!user}>
+                Post
+            </button>
             <div className="flex w-[95%] items-center justify-between mt-auto hover:bg-neutral-900 px-2 pr-5 py-2 rounded-full ">
                 <button className="flex items-center gap-3">
                     <div className="border-2 rounded-full ">
