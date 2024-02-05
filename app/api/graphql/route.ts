@@ -4,10 +4,9 @@ import { NextRequest } from "next/server";
 import { typeDefs } from "@/graphql/schemas";
 import { resolvers } from "@/graphql/resolvers";
 import prisma from "@/prisma/db";
-import { PrismaClient } from "@prisma/client/extension";
 
 export type Context = {
-    prisma: PrismaClient;
+    prisma: typeof prisma;
 };
 
 const server = new ApolloServer<Context>({
