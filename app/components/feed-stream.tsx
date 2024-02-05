@@ -7,16 +7,17 @@ import Link from "next/link";
 
 export default function FeedStream() {
     const [showEmojiPicker, setShowEmojiPicker] = useState<boolean>(false);
-    const [inputValue, setInputValue] = useState<string>("");
+    const [threadText, setThreadText] = useState<string>("");
 
     const handleEmojiSelect = (emoji: any) => {
-        setInputValue((prevInputValue) => prevInputValue + emoji.native);
+        setThreadText((currentText) => currentText + emoji.native);
         setShowEmojiPicker(false);
     };
 
     const handleThreadSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
         event.preventDefault;
-        console.log(inputValue);
+        console.log(threadText);
     };
 
     return (
@@ -36,7 +37,7 @@ export default function FeedStream() {
                     </div>
                     <form className="w-full" onSubmit={handleThreadSubmit}>
                         <div>
-                            <textarea className="text-xl placeholder-neutral-500 focus:outline-none w-full resize-none break-all" placeholder="What's happening?" value={inputValue} onChange={(e) => setInputValue(e.target.value)} />
+                            <textarea className="text-xl placeholder-neutral-500 focus:outline-none w-full resize-none break-all" placeholder="What's happening?" value={threadText} onChange={(e) => setThreadText(e.target.value)} />
                         </div>
                         <hr className="border-neutral-700 mb-3" />
                         <div className="flex items-center">
@@ -50,7 +51,7 @@ export default function FeedStream() {
                                     </div>
                                 )}
                             </div>
-                            <button className="font-bold ml-auto bg-sky-500 rounded-full px-4 py-2 disabled:opacity-40 disabled:cursor-not-allowed" disabled={!inputValue}>
+                            <button className="font-bold ml-auto bg-sky-500 rounded-full px-4 py-2 disabled:opacity-40 disabled:cursor-not-allowed" disabled={!threadText}>
                                 Post
                             </button>
                         </div>
