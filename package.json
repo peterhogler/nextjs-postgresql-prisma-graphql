@@ -9,10 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@apollo/client": "^3.9.4",
     "@apollo/server": "^4.10.0",
     "@as-integrations/next": "^3.0.0",
     "@emoji-mart/react": "^1.1.1",
-    "@prisma/client": "^5.9.0",
+    "@prisma/client": "^5.9.1",
     "graphql": "^16.8.1",
     "graphql-tag": "^2.12.6",
     "next": "14.1.0",
@@ -32,7 +33,7 @@
     "i": "^0.3.7",
     "npm": "^10.4.0",
     "postcss": "^8",
-    "prisma": "^5.9.0",
+    "prisma": "^5.9.1",
     "tailwindcss": "^3.3.0",
     "typescript": "^5"
   }

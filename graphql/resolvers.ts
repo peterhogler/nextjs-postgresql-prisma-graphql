@@ -13,7 +13,11 @@ export const resolvers = {
     },
     Mutation: {
         createThread: (_: any, args: any, context: Context) => {
-            console.log(args);
+            return context.prisma.thread.create({
+                data: {
+                    content: args.content,
+                },
+            });
         },
     },
 };

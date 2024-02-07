@@ -1,4 +1,4 @@
-import FeedStream from "./components/feed-stream";
+import FeedStream from "./components/feed/feed-stream";
 import NavigationSidebar from "./components/navigation-sidebar";
 import TrendingSidebar from "./components/trending-sidebar";
 
