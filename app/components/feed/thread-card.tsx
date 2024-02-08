@@ -3,6 +3,7 @@ import { formatTimeStamp } from "@/utils/formatTimeStamp";
 import { FiUser } from "react-icons/fi";
 
 export default function ThreadCard({ thread }: ThreadCardProps) {
+    console.log(thread.createdAt);
     return (
         <div className="pt-4 pb-3 px-4 border-b border-b-neutral-700 hover:bg-neutral-900/40">
             <div className="flex gap-4">

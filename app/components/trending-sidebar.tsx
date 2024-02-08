@@ -3,7 +3,7 @@ import { FiBell, FiBookmark, FiHome, FiMessageCircle, FiMoreHorizontal, FiSearch
 
 export default function TrendingSidebar() {
     return (
-        <div className="ml-7 p-1 w-[350px] space-y-4">
+        <div className="  ml-7 p-1 w-[350px] space-y-4">
             <div className="flex items-center gap-3 bg-zinc-900 px-4 py-3 rounded-full">
                 <label htmlFor="search">
                     <FiSearch size={20} />

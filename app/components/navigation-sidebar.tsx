@@ -9,7 +9,7 @@ export default function NavigationSidebar() {
     const pathname = usePathname();
     console.log(pathname);
     return (
-        <div className="pb-5 pt-2 flex flex-col w-[275px]">
+        <div className=" pb-5 pt-2 flex flex-col w-[275px]">
             <Link className="text-3xl px-3 mb-3 font-bold" href="/">
                 X
             </Link>
@@ -21,14 +21,6 @@ export default function NavigationSidebar() {
                 <button className="flex items-center gap-4 hover:bg-neutral-900 w-max pl-3 pr-5 py-2 rounded-full">
                     <FiSearch size={25} />
                     Explore
-                </button>
-                <button className="flex items-center gap-4 hover:bg-neutral-900 w-max pl-3 pr-5 py-2 rounded-full">
-                    <FiBell size={25} />
-                    Notifications
-                </button>
-                <button className="flex items-center gap-4 hover:bg-neutral-900 w-max pl-3 pr-5 py-2 rounded-full">
-                    <FiMessageCircle size={25} />
-                    Messages
                 </button>
                 <button className="flex items-center gap-4 hover:bg-neutral-900 w-max pl-3 pr-5 py-2 rounded-full">
                     <FiBookmark size={25} />
