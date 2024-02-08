@@ -9,7 +9,6 @@ import CreatePostForm from "./form/create-thread-form";
 export default function ActivityStream() {
     const { data, loading, error, refetch } = useQuery(GET_THREADS);
 
-    console.log(data?.threads);
 
     if (loading) return <div>Loading...</div>;
     if (error) return <div>Error while trying to get posts.</div>;

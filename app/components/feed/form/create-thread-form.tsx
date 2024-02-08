@@ -7,6 +7,7 @@ import { useMutation } from "@apollo/client";
 import { CREATE_THREAD } from "@/graphql/mutations";
 import CreateThreadButton from "./create-thread-button";
 import EmojiPickerComponent from "./emoji-picker";
+import GIFPickerComponent from "./gif-picker";
 
 export default function CreatePostForm({ refetchThreads }: { refetchThreads: any }) {
     const [threadText, setThreadText] = useState<string>("");
@@ -28,7 +29,7 @@ export default function CreatePostForm({ refetchThreads }: { refetchThreads: any
             if (error instanceof Error) {
                 throw new Error(`Error has occured while trying to create new thread: ${error.message}`);
             } else {
-                throw new Error("Unknown error while trying to create thread.§");
+                throw new Error("Unknown error while trying to create thread.");
             }
         } finally {
             refetchThreads();
@@ -50,6 +51,7 @@ export default function CreatePostForm({ refetchThreads }: { refetchThreads: any
                     <hr className="border-neutral-700 mb-3" />
                     <div className="flex items-center">
                         <EmojiPickerComponent onThreadTextChange={setThreadText} />
+                        <GIFPickerComponent />
                         <CreateThreadButton threadText={threadText} formSubmitState={loading} />
                     </div>
                 </form>
