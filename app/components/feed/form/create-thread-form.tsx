@@ -11,6 +11,7 @@ import GIFPickerComponent from "./gif-picker";
 
 export default function CreatePostForm({ refetchThreads }: { refetchThreads: any }) {
     const [threadText, setThreadText] = useState<string>("");
+    const [selectedGIF, setSelectedGIF] = useState();
 
     const [createThread, { loading }] = useMutation(CREATE_THREAD);
 
@@ -51,7 +52,7 @@ export default function CreatePostForm({ refetchThreads }: { refetchThreads: any
                     <hr className="border-neutral-700 mb-3" />
                     <div className="flex items-center">
                         <EmojiPickerComponent onThreadTextChange={setThreadText} />
-                        <GIFPickerComponent />
+                        <GIFPickerComponent onGIFSelect={setSelectedGIF} />
                         <CreateThreadButton threadText={threadText} formSubmitState={loading} />
                     </div>
                 </form>

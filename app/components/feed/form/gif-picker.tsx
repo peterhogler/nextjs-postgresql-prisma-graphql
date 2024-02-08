@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import { GiphyFetch } from "@giphy/js-fetch-api";
 import { Grid } from "@giphy/react-components";
@@ -10,13 +12,15 @@ export default function GIFPickerComponent({ onGIFSelect }: { onGIFSelect: any }
     const [searchTerm, setSearchTerm] = useState("Dog");
 
     const fetchGifs = (offset: number) => giphyFetch.search(searchTerm, { offset, limit: 10 });
-    console.log(process.env.NEXT_PUBLIC_GIPHY_API_KEY);
 
     return (
         <div className="relative">
             <div className="hover:bg-sky-900/50 rounded-full p-1 cursor-pointer" onClick={() => setShowGifPicker(!showGifPicker)}>
                 <MdOutlineGifBox className="text-sky-500" size={20} />
             </div>
+            <p>
+                <a href="https://giphy.com/gifs/lap-QvBoMEcQ7DQXK">via GIPHY</a>
+            </p>
             {showGifPicker && (
                 <div className="absolute top-9 bg-white rounded-lg text-black">
                     <input type="text" value={searchTerm} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearchTerm(e.target.value)} placeholder="Search for GIFs" className="gif-search-input" />
@@ -28,7 +32,8 @@ export default function GIFPickerComponent({ onGIFSelect }: { onGIFSelect: any }
                             gutter={6}
                             onGifClick={(gif, e) => {
                                 e.preventDefault();
-                                onGIFSelect(gif);
+                                console.log(gif);
+                                // onGIFSelect(gif);
                                 setShowGifPicker(false);
                             }}
                         />
