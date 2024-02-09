@@ -7,6 +7,7 @@ export const GET_THREADS = gql`
             createdAt
             id
             updatedAt
+            gif
         }
     }
 `;

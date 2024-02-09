@@ -9,10 +9,11 @@ export const typeDefs = `#graphql
         createdAt: String!
         updatedAt: String!
         content: String!
+        gif: String!
     }
 
     type Mutation {
-        createThread(content: String!): Thread
+        createThread(content: String!, gif: String!): Thread
         getThreadById(id: String!): Thread
     }
 `;

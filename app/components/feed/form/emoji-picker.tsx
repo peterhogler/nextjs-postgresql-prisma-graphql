@@ -2,11 +2,11 @@ import { useState } from "react";
 import { FiSmile, FiUser } from "react-icons/fi";
 import EmojiPicker from "@emoji-mart/react";
 
-export default function EmojiPickerComponent({ onThreadTextChange }: { onThreadTextChange: any }) {
+export default function EmojiPickerComponent({ onThreadContentChange }: { onThreadContentChange: any }) {
     const [showEmojiPicker, setShowEmojiPicker] = useState<boolean>(false);
 
     const handleEmojiSelect = (emoji: any) => {
-        onThreadTextChange((currentText: string) => currentText + emoji.native);
+        onThreadContentChange((currentText: string) => currentText + emoji.native);
         setShowEmojiPicker(false);
     };
     return (

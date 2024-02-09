@@ -3,7 +3,11 @@ import { Context } from "@/app/api/graphql/route";
 export const resolvers = {
     Query: {
         threads: async (_: any, args: Record<string, never>, context: Context) => {
-            return context.prisma.thread.findMany();
+            return context.prisma.thread.findMany({
+                orderBy: {
+                    createdAt: "desc",
+                },
+            });
         },
         getThreadById: async (_: any, args: { id: string }, context: Context) => {
             return context.prisma.thread.findUnique({
@@ -16,6 +20,7 @@ export const resolvers = {
             return context.prisma.thread.create({
                 data: {
                     content: args.content,
+                    gif: args.gif || "",
                 },
             });
         },

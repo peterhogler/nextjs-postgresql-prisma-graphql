@@ -12,6 +12,7 @@ export default function ActivityStream() {
 
     if (loading) return <div>Loading...</div>;
     if (error) return <div>Error while trying to get posts.</div>;
+    
     return (
         <div>
             <CreatePostForm refetchThreads={refetch} />
