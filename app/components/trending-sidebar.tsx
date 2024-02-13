@@ -16,7 +16,7 @@ export default function TrendingSidebar() {
 
                     <p className="text-neutral-500">A full-stack project by Peter</p>
                 </div>
-                <p>NextJS, TypeScript, PostgreSQL, Prisma, GraphQL, Tailwind, Clerk Authentication, Emoji Mart, Giphy GIF API.</p>
+                <p>NextJS (14), TypeScript, PostgreSQL, Prisma, GraphQL, Tailwind, Next Authentication (Prisma Adapter), Emoji Mart Library, Tenor GIF API.</p>
                 <button className="bg-sky-500 px-4 py-2 rounded-full font-bold">peterhogler.vercel.app</button>
             </div>
             <div className=" bg-zinc-900 rounded-2xl ">

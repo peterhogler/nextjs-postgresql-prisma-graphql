@@ -6,14 +6,27 @@ export const typeDefs = `#graphql
 
     type Thread {
         id: ID!
+        content: String!
+        gif: String
+        author: User
         createdAt: String!
         updatedAt: String!
-        content: String!
-        gif: String!
     }
 
+    type User {
+        id: ID!
+        email: String!
+        name: String
+        handle: String
+        emailVerified: String
+        image: String
+        threads: [Thread!]!
+        createdAt: String!
+        updatedAt: String!
+    }  
+
     type Mutation {
-        createThread(content: String!, gif: String!): Thread
+        createThread(content: String!, gif: String, authorId: ID!): Thread
         getThreadById(id: String!): Thread
     }
 `;

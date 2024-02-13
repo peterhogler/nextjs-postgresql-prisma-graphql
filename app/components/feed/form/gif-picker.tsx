@@ -40,7 +40,7 @@ export default function GIFPickerComponent({ onGIFSelect }: { onGIFSelect: React
     }, [debouncedSearch]);
 
     const fetchCategories = async (signal: AbortSignal) => {
-        const url = `https://tenor.googleapis.com/v2/categories?key=${API_KEY}&client_key=${clientkey}&limit=20`;
+        const url = `https://tenor.googleapis.com/v2/categories?key=${API_KEY}&client_key=${clientkey}&limit=30`;
         const response = await fetch(url, {
             signal,
         });
@@ -50,7 +50,7 @@ export default function GIFPickerComponent({ onGIFSelect }: { onGIFSelect: React
     };
 
     const fetchGIF = async (signal: AbortSignal) => {
-        const url = `https://tenor.googleapis.com/v2/search?q=${debouncedSearch}&key=${API_KEY}&client_key=${clientkey}&limit=20`;
+        const url = `https://tenor.googleapis.com/v2/search?q=${debouncedSearch}&key=${API_KEY}&client_key=${clientkey}&limit=30`;
         const response = await fetch(url, { signal });
         const { results } = await response.json();
         setSearchedGIF(results);

@@ -7,6 +7,9 @@ export const resolvers = {
                 orderBy: {
                     createdAt: "desc",
                 },
+                include: {
+                    author: true,
+                },
             });
         },
         getThreadById: async (_: any, args: { id: string }, context: Context) => {
@@ -21,6 +24,11 @@ export const resolvers = {
                 data: {
                     content: args.content,
                     gif: args.gif || "",
+                    author: {
+                        connect: {
+                            id: args.authorId,
+                        },
+                    },
                 },
             });
         },

@@ -1,4 +1,6 @@
 "use client";
+
+import { signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -6,10 +8,13 @@ import { FiBell, FiBookmark, FiHome, FiMessageCircle, FiMoreHorizontal, FiSearch
 
 export default function NavigationSidebar() {
     const user = false;
-    const pathname = usePathname();
-    console.log(pathname);
+
+    const { data: session, status } = useSession();
+
+    console.log(status);
+    console.log(session?.user);
     return (
-        <div className=" pb-5 pt-2 flex flex-col w-[275px]">
+        <div className="flex flex-col h-full pb-5 pt-2  w-[275px]">
             <Link className="text-3xl px-3 mb-3 font-bold" href="/">
                 X
             </Link>
@@ -39,16 +44,33 @@ export default function NavigationSidebar() {
                 Post
             </button>
             <div className="flex w-[95%] items-center justify-between mt-auto hover:bg-neutral-900 px-2 pr-5 py-2 rounded-full ">
-                <button className="flex items-center gap-3">
-                    <div className="border-2 rounded-full ">
-                        <FiUser size={32} />
+                {session ? (
+                    <div className="flex flex-1 items-center gap-3" onClick={() => signOut()}>
+                        <div className="border-2 rounded-full ">
+                            <FiUser size={32} />
+                        </div>
+                        <div className="flex-1 flex items-center justify-between leading-tight text-left">
+                            <div>
+                                <p className=" font-bold">Peter Hogler</p>
+                                <p className="text-neutral-500">@Nightrider141</p>
+                            </div>
+                        </div>
+                        <FiMoreHorizontal size={20} />
                     </div>
-                    <div className="leading-tight text-left">
-                        <p className=" font-bold">Peter Hogler</p>
-                        <p className="text-neutral-500">@Nightrider141</p>
+                ) : (
+                    <div className="flex flex-1 items-center gap-3" onClick={() => signIn("google")}>
+                        <div className="border-2 rounded-full ">
+                            <FiUser size={32} />
+                        </div>
+                        <div className="flex-1 flex items-center justify-between leading-tight text-left">
+                            <div>
+                                <p className=" font-bold">Guest</p>
+                                <p className="text-neutral-500">Click to login</p>
+                            </div>
+                        </div>
+                        <FiMoreHorizontal size={20} />
                     </div>
-                </button>
-                <FiMoreHorizontal size={20} />
+                )}
             </div>
         </div>
     );

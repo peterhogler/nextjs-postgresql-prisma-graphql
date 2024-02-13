@@ -2,6 +2,10 @@ import type { Metadata } from "next";
 import { Karla } from "next/font/google";
 import "./globals.css";
 import ApolloClientProvider from "./components/providers/apollo-client-provider";
+import NavigationSidebar from "./components/navigation-sidebar";
+import TrendingSidebar from "./components/trending-sidebar";
+import AuthProvider from "./components/providers/auth-provider";
+import { getServerSession } from "next-auth";
 
 const karla = Karla({ subsets: ["latin"] });
 
@@ -10,15 +14,22 @@ export const metadata: Metadata = {
     description: "X Clone",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
     children,
 }: Readonly<{
     children: React.ReactNode;
 }>) {
+    const session = await getServerSession();
     return (
         <html lang="en">
             <body className={karla.className}>
-                <ApolloClientProvider>{children}</ApolloClientProvider>
+                <ApolloClientProvider>
+                    <AuthProvider session={session}>
+                        <NavigationSidebar />
+                        <main>{children}</main>
+                    </AuthProvider>
+                    <TrendingSidebar />
+                </ApolloClientProvider>
             </body>
         </html>
     );

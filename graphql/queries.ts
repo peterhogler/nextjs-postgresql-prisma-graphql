@@ -3,11 +3,16 @@ import { gql } from "@apollo/client";
 export const GET_THREADS = gql`
     query Threads {
         threads {
+            id
             content
             createdAt
-            id
             updatedAt
             gif
+            author {
+                id
+                name
+                email
+            }
         }
     }
 `;

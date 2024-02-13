@@ -8,7 +8,7 @@
     }
 
     body {
-        @apply flex flex-col h-full bg-black text-white  m-auto;
+        @apply h-full flex max-w-7xl bg-black text-neutral-50  m-auto;
     }
 
     input,

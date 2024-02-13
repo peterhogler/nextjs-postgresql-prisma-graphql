@@ -1,9 +1,9 @@
 import { startServerAndCreateNextHandler } from "@as-integrations/next";
 import { ApolloServer } from "@apollo/server";
-import { NextRequest } from "next/server";
 import { typeDefs } from "@/graphql/schemas";
 import { resolvers } from "@/graphql/resolvers";
 import prisma from "@/prisma/db";
+import { NextApiRequest, NextApiResponse } from "next";
 
 export type Context = {
     prisma: typeof prisma;
@@ -15,7 +15,7 @@ const server = new ApolloServer<Context>({
 });
 
 const handler = startServerAndCreateNextHandler(server, {
-    context: async (req: NextRequest, res: any) => ({ req, res, prisma }),
+    context: async (req: NextApiRequest, res: NextApiResponse) => ({ req, res, prisma }),
 });
 
 export { handler as GET, handler as POST };
