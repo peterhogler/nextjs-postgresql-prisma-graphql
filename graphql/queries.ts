@@ -12,6 +12,7 @@ export const GET_THREADS = gql`
                 id
                 name
                 email
+                image
             }
         }
     }

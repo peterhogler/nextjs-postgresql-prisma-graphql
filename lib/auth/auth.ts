@@ -22,15 +22,11 @@ export const authOptions: NextAuthOptions = {
     secret: process.env.NEXTAUTH_SECRET,
     callbacks: {
         async session({ session, user, token }) {
+            console.log({ session, user, token });
             if (session.user) {
                 session.user.id = token.sub;
             }
             return session;
-        },
-    },
-    events: {
-        async signIn({ user }) {
-            console.log(`${user} signed in.`);
         },
     },
 };

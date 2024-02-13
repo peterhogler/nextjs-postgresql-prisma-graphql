@@ -4,7 +4,6 @@ import Image from "next/image";
 import { FiUser } from "react-icons/fi";
 
 export default function ThreadCard({ thread }: ThreadCardProps) {
-    console.log(thread);
     return (
         <div className="pt-4 pb-3 px-4 border-b border-b-neutral-700 hover:bg-neutral-900/40">
             <div className="flex gap-4">
@@ -15,9 +14,9 @@ export default function ThreadCard({ thread }: ThreadCardProps) {
                 </div>
                 <div className="w-full">
                     <div className="inline-flex items-center gap-2 text-left">
-                        <p className=" font-bold">{thread.author.name}</p>
+                        <p className=" font-bold">{thread?.author?.name}</p>
                         <p className="text-neutral-500">
-                            {thread.author.email} · {formatTimeStamp(thread.createdAt.toString())}
+                            {thread?.author?.email} · {formatTimeStamp(thread.createdAt.toString())}
                         </p>
                     </div>
                     <div className="w-full space-y-2">

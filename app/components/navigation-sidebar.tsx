@@ -1,18 +1,19 @@
 "use client";
 
 import { signIn, signOut, useSession } from "next-auth/react";
+import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useState } from "react";
+import { FaApple, FaDiscord } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
 
-import { FiBell, FiBookmark, FiHome, FiMessageCircle, FiMoreHorizontal, FiSearch, FiUser, FiUsers } from "react-icons/fi";
+import { FiBookmark, FiHome, FiMoreHorizontal, FiSearch, FiUser, FiUsers } from "react-icons/fi";
 
 export default function NavigationSidebar() {
-    const user = false;
-
+    const [isProfileExpanded, setIsProfileExanded] = useState<boolean>(false);
     const { data: session, status } = useSession();
 
-    console.log(status);
-    console.log(session?.user);
+    console.log(session?.user.image);
     return (
         <div className="flex flex-col h-full pb-5 pt-2  w-[275px]">
             <Link className="text-3xl px-3 mb-3 font-bold" href="/">
@@ -40,25 +41,23 @@ export default function NavigationSidebar() {
                     Profile
                 </button>
             </div>
-            <button className="font-bold text-xl bg-sky-500 w-4/5 py-2 mt-6 rounded-full disabled:opacity-40 disabled:cursor-not-allowed " disabled={!user}>
+            <button className="font-bold text-xl bg-sky-500 w-4/5 py-2 mt-6 rounded-full disabled:opacity-40 disabled:cursor-not-allowed " disabled={!session}>
                 Post
             </button>
-            <div className="flex w-[95%] items-center justify-between mt-auto hover:bg-neutral-900 px-2 pr-5 py-2 rounded-full ">
+            <div className="relative flex w-[95%] items-center justify-between mt-auto  px-2 pr-5 py-2 rounded-full hover:bg-neutral-900/40" onClick={() => setIsProfileExanded(!isProfileExpanded)}>
                 {session ? (
-                    <div className="flex flex-1 items-center gap-3" onClick={() => signOut()}>
-                        <div className="border-2 rounded-full ">
-                            <FiUser size={32} />
-                        </div>
+                    <div className="flex flex-1 items-center gap-3 ">
+                        <div className="h-[45px] w-[45px] relative rounded-full ">{session?.user?.image ? <Image className="rounded-full" src={session?.user?.image as string} layout="fill" objectFit="contain" alt="profile picture" /> : <FiUser size={32} />}</div>
                         <div className="flex-1 flex items-center justify-between leading-tight text-left">
                             <div>
-                                <p className=" font-bold">Peter Hogler</p>
-                                <p className="text-neutral-500">@Nightrider141</p>
+                                <p className=" font-bold">{session?.user?.name}</p>
+                                <p className="text-neutral-500">{session?.user.email}</p>
                             </div>
                         </div>
                         <FiMoreHorizontal size={20} />
                     </div>
                 ) : (
-                    <div className="flex flex-1 items-center gap-3" onClick={() => signIn("google")}>
+                    <div className="flex flex-1 items-center gap-3 " onClick={() => setIsProfileExanded(!isProfileExpanded)}>
                         <div className="border-2 rounded-full ">
                             <FiUser size={32} />
                         </div>
@@ -69,6 +68,27 @@ export default function NavigationSidebar() {
                             </div>
                         </div>
                         <FiMoreHorizontal size={20} />
+                    </div>
+                )}
+
+                {isProfileExpanded && (
+                    <div className="absolute w-full bottom-16 rounded-2xl py-4 shadow-white/20 shadow-sm">
+                        {session ? (
+                            <div className="px-4 py-2 hover:bg-neutral-900/40 font-bold cursor-pointer" onClick={() => signOut()}>
+                                Log out from {session?.user?.name}
+                            </div>
+                        ) : (
+                            <>
+                                <div className="flex items-center gap-2 px-4 py-2 hover:bg-neutral-900/40 font-bold cursor-pointer" onClick={() => signIn("google")}>
+                                    <FcGoogle size={20} />
+                                    Sign In With Google
+                                </div>
+                                <div className="flex items-center gap-2 px-4 py-2 hover:bg-neutral-900/40 font-bold cursor-pointer" onClick={() => signIn("discord")}>
+                                    <FaDiscord size={20} />
+                                    Sign In With Discord
+                                </div>
+                            </>
+                        )}
                     </div>
                 )}
             </div>

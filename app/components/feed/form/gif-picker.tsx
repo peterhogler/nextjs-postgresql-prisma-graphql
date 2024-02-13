@@ -1,5 +1,3 @@
-"use client";
-
 import React, { SetStateAction, useEffect, useState } from "react";
 import { MdOutlineGifBox } from "react-icons/md";
 import { FiSearch } from "react-icons/fi";
@@ -11,7 +9,7 @@ const clientkey = "x-clone---tenor-1707471687467";
 
 export default function GIFPickerComponent({ onGIFSelect }: { onGIFSelect: React.Dispatch<SetStateAction<string>> }) {
     const [showGifPicker, setShowGifPicker] = useState<boolean>(false);
-    const [search, setSearch] = useState<string>("dog");
+    const [search, setSearch] = useState<string>("");
     const [searchedGIF, setSearchedGIF] = useState<any>([]);
     const [categories, setCategories] = useState<Category[]>([]);
 
@@ -31,13 +29,13 @@ export default function GIFPickerComponent({ onGIFSelect }: { onGIFSelect: React
     }, [showGifPicker]);
 
     useEffect(() => {
-        if (!debouncedSearch) return;
+        if (!showGifPicker || !debouncedSearch) return;
 
         const abortController = new AbortController();
         const { signal } = abortController;
 
         fetchGIF(signal);
-    }, [debouncedSearch]);
+    }, [showGifPicker, debouncedSearch]);
 
     const fetchCategories = async (signal: AbortSignal) => {
         const url = `https://tenor.googleapis.com/v2/categories?key=${API_KEY}&client_key=${clientkey}&limit=30`;
@@ -53,6 +51,7 @@ export default function GIFPickerComponent({ onGIFSelect }: { onGIFSelect: React
         const url = `https://tenor.googleapis.com/v2/search?q=${debouncedSearch}&key=${API_KEY}&client_key=${clientkey}&limit=30`;
         const response = await fetch(url, { signal });
         const { results } = await response.json();
+        // console.log(results);
         setSearchedGIF(results);
     };
 
