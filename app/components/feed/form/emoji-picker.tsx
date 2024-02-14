@@ -15,7 +15,7 @@ export default function EmojiPickerComponent({ onThreadContentChange }: { onThre
                 <FiSmile className="text-sky-500" size={20} />
             </div>
             {showEmojiPicker && (
-                <div className="absolute top-9">
+                <div className="absolute top-9 z-10">
                     <EmojiPicker onEmojiSelect={handleEmojiSelect} />
                 </div>
             )}

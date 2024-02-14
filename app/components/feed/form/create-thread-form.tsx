@@ -48,22 +48,20 @@ export default function CreatePostForm({ refetchThreads }: { refetchThreads: any
     };
     return (
         <>
-            <div className="border-b border-neutral-700 pt-4 pb-3 px-3">
+            <div className="border-b border-x border-neutral-700 pt-4 pb-3 px-3">
                 <div className="flex gap-4">
                     <div className="h-max">
-                        <div className="border-2 rounded-full ">
-                            <FiUser size={28} />
-                        </div>
+                        <div className="h-[45px] w-[45px] flex items-center justify-center relative rounded-full ">{session?.user?.image ? <Image className="rounded-full" src={session?.user?.image as string} layout="fill" objectFit="contain" alt="profile picture" /> : <FiUser size={35} />}</div>
                     </div>
                     <form className="w-full" onSubmit={handleThreadSubmit}>
                         <div>
                             <textarea className="text-xl placeholder-neutral-500 focus:outline-none w-full resize-none break-all" placeholder="What's happening?" value={threadContent} onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setThreadContent(e.target.value)} />
                         </div>
                         {selectedGIF && (
-                            <div className="h-[200px] rounded-xl  relative border border-neutral-500 mb-5">
-                                <div className="absolute z-40 right-4 top-2 bg-neutral-900 rounded-full" onClick={() => setSelectedGIF("")}>
+                            <div className="h-[250px] rounded-xl  relative border border-neutral-500 mb-5">
+                                <button className="absolute z-40 right-4 top-2 bg-neutral-900 rounded-full" onClick={() => setSelectedGIF("")}>
                                     <IoClose size={24} />
-                                </div>
+                                </button>
                                 <Image src={selectedGIF} className="rounded-xl" layout="fill" objectFit="center" objectPosition="center" alt="Selected GIF" />
                             </div>
                         )}
@@ -72,7 +70,7 @@ export default function CreatePostForm({ refetchThreads }: { refetchThreads: any
                         <div className="flex items-center gap-2">
                             <EmojiPickerComponent onThreadContentChange={setThreadContent} />
                             <GIFPickerComponent onGIFSelect={setSelectedGIF} />
-                            <CreateThreadButton threadContent={threadContent} formSubmitState={loading} />
+                            <CreateThreadButton threadContent={threadContent} formSubmitState={loading} text={"Post"} />
                         </div>
                     </form>
                 </div>

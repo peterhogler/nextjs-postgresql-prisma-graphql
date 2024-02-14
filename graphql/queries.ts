@@ -17,3 +17,18 @@ export const GET_THREADS = gql`
         }
     }
 `;
+
+export const GET_THREAD = gql`
+    query GetThreadById($getThreadByIdId: ID!) {
+        getThreadById(id: $getThreadByIdId) {
+            author {
+                email
+                name
+                image
+            }
+            content
+            createdAt
+            gif
+        }
+    }
+`;

@@ -52,7 +52,7 @@ export default function TrendingSidebar() {
                 <h1 className="text-xl font-bold px-4 pt-4">Trending</h1>
                 <div>
                     <div className="">
-                        {["Web Development", "Full Stack Development"].map((trending, idx) => (
+                        {["Web Development", "Full Stack Development", "Sweden"].map((trending, idx) => (
                             <div className="px-4 py-3 hover:bg-zinc-800 last:rounded-b-2xl duration-200" key={idx}>
                                 <p className="text-sm text-neutral-500">{idx + 1} · Trending</p>
                                 <p>#{trending}</p>

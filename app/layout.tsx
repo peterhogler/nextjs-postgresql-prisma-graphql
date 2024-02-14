@@ -20,15 +20,16 @@ export default async function RootLayout({
     children: React.ReactNode;
 }>) {
     const session = await getServerSession();
+
     return (
         <html lang="en">
-            <body className={karla.className}>
+            <body className={`${karla.className} relative flex justify-center max-w-7xl m-auto`}>
                 <ApolloClientProvider>
                     <AuthProvider session={session}>
                         <NavigationSidebar />
                         <main>{children}</main>
+                        <TrendingSidebar />
                     </AuthProvider>
-                    <TrendingSidebar />
                 </ApolloClientProvider>
             </body>
         </html>
