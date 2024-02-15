@@ -1,5 +1,5 @@
-import ActivityStream from "./components/feed/activity-stream";
-import ActivityStreamFilter from "./components/feed/activity-stream-filter";
+import ActivityStream from "./components/feed/activity/activity-stream";
+import ActivityStreamFilter from "./components/feed/activity/activity-stream-filter";
 
 export default function Page() {
     return (

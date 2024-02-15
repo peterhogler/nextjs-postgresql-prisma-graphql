@@ -11,18 +11,18 @@ datasource db {
 }
 
 model Account {
-  id                 String  @id @default(cuid())
-  userId             String
-  type               String
-  provider           String
-  providerAccountId  String
-  refresh_token      String?  @db.Text
-  access_token       String?  @db.Text
-  expires_at         Int?
-  token_type         String?
-  scope              String?
-  id_token           String?  @db.Text
-  session_state      String?
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -34,7 +34,8 @@ model Session {
   sessionToken String   @unique @map("session_token")
   userId       String
   expires      DateTime
-  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model User {
@@ -51,45 +52,34 @@ model User {
   sessions Session[]
   thread   Thread[]
   comments Comment[]
-  Like     Like[]
 
   @@map("users")
 }
 
 model Thread {
-  id        String    @id @default(cuid())
-  author    User      @relation(fields: [userId], references: [id])
+  id        String   @id @default(cuid())
   userId    String
-  createdAt DateTime  @default(now()) @map("created_at")
-  updatedAt DateTime  @updatedAt @map("updated_at")
   content   String
   gif       String?
-  comments  Comment[]
-  likes     Like[]
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  comments Comment[]
+
+  author User @relation(fields: [userId], references: [id])
 }
 
 model Comment {
-  id        String   @id @default(cuid())
-  content   String
-  threadId  String
-  userId    String
+  id       String @id @default(cuid())
+  content  String
+  userId   String
+  threadId String
+
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
   thread Thread @relation(fields: [threadId], references: [id])
-  user   User   @relation(fields: [userId], references: [id])
-}
-
-model Like {
-  id        String   @id @default(cuid())
-  threadId  String
-  userId    String
-  createdAt DateTime @default(now())
-
-  thread Thread @relation(fields: [threadId], references: [id])
-  user   User   @relation(fields: [userId], references: [id])
-
-  @@map("likes")
+  author User   @relation(fields: [userId], references: [id])
 }
 
 model VerificationToken {

@@ -29,6 +29,16 @@ export const GET_THREAD = gql`
             content
             createdAt
             gif
+            id
+            updatedAt
+            comments {
+                content
+                createdAt
+                author {
+                    email
+                    name
+                }
+            }
         }
     }
 `;

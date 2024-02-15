@@ -12,7 +12,7 @@ import { IoClose } from "react-icons/io5";
 import { FiUser } from "react-icons/fi";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
-import NotSignedInMessage from "../not-signed-in";
+import NotSignedInMessage from "../../not-signed-in";
 
 export default function CreatePostForm({ refetchThreads }: { refetchThreads: any }) {
     const [threadContent, setThreadContent] = useState<string>("");

@@ -17,6 +17,12 @@ export const resolvers = {
                 where: { id: args.id },
                 include: {
                     author: true,
+                    comments: {
+                        include: {
+                            author: true,
+                            thread: true,
+                        },
+                    },
                 },
             });
         },
@@ -30,6 +36,23 @@ export const resolvers = {
                     author: {
                         connect: {
                             id: args.authorId,
+                        },
+                    },
+                },
+            });
+        },
+        createComment: (_: any, args: any, context: Context) => {
+            return context.prisma.comment.create({
+                data: {
+                    content: args.content,
+                    author: {
+                        connect: {
+                            id: args.authorId,
+                        },
+                    },
+                    thread: {
+                        connect: {
+                            id: args.threadId,
                         },
                     },
                 },
