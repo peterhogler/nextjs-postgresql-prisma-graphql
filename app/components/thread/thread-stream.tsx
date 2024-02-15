@@ -15,7 +15,7 @@ export default function ThreadStream() {
     const { data: session } = useSession();
     const { threadId } = useParams();
 
-    const { data, loading, error } = useQuery(GET_THREAD, {
+    const { data, refetch } = useQuery(GET_THREAD, {
         variables: { getThreadByIdId: threadId },
     });
 
@@ -28,13 +28,24 @@ export default function ThreadStream() {
 
         if (!content || !threadId || !session?.user?.id) return;
 
-        await createComment({
-            variables: {
-                content,
-                threadId,
-                authorId: session.user.id,
-            },
-        });
+        try {
+            await createComment({
+                variables: {
+                    content,
+                    threadId,
+                    authorId: session.user.id,
+                },
+            });
+            formData.delete("content");
+        } catch (error) {
+            if (error instanceof Error) {
+                throw new Error(`Unable to create comment: ${error}`);
+            } else {
+                throw new Error("Unknown error unable to create comment");
+            }
+        } finally {
+            refetch();
+        }
     };
 
     return (
@@ -97,9 +108,8 @@ export default function ThreadStream() {
                     </div>
                     <div>
                         {thread.comments.map((comment: any) => {
-                            console.log(comment);
                             return (
-                                <div className="border border-neutral-700 p-3" key={comment.id}>
+                                <div className="border border-neutral-700 p-3" key={comment.createdAt}>
                                     <div className="flex items-center gap-2 h-max">
                                         <div className="h-[45px] w-[45px] flex items-center justify-center relative rounded-full ">{thread.author.image ? <Image className="rounded-full" src={thread.author.image as string} layout="fill" objectFit="contain" alt="profile picture" /> : <FiUser size={35} />}</div>
                                         <div className="flex gap-2 leading-tight">

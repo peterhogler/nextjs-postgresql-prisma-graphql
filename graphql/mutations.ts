@@ -17,20 +17,17 @@ export const CREATE_THREAD = gql`
 `;
 
 export const CREATE_COMMENT = gql`
-    mutation Mutation($content: String!, $authorId: String!, $threadId: String!) {
+    mutation Mutation($content: String!, $authorId: ID!, $threadId: ID!) {
         createComment(content: $content, authorId: $authorId, threadId: $threadId) {
-            author {
-                email
-                id
-                name
-            }
-            createdAt
             id
             content
-            threadId {
-                id
-            }
+            createdAt
             updatedAt
+            author {
+                id
+                name
+                email
+            }
         }
     }
 `;

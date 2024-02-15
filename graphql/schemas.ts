@@ -39,7 +39,7 @@ export const typeDefs = `#graphql
 
     type Mutation {
         createThread(content: String!, gif: String, authorId: ID!): Thread
-        createComment(content: String!, authorId: String!, threadId: String!): Comment
+        createComment(content: String!, authorId: ID!, threadId: ID!): Comment
         getThreadById(id: String!): Thread
     }
 `;

@@ -41,8 +41,8 @@ export const resolvers = {
                 },
             });
         },
-        createComment: (_: any, args: any, context: Context) => {
-            return context.prisma.comment.create({
+        createComment: async (_: any, args: any, context: Context) => {
+            const comment = await context.prisma.comment.create({
                 data: {
                     content: args.content,
                     author: {
@@ -56,7 +56,13 @@ export const resolvers = {
                         },
                     },
                 },
+                include: {
+                    author: true,
+                    thread: true,
+                },
             });
+
+            return comment;
         },
     },
 };
