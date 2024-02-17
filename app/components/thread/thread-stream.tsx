@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef } from "react";
 import { useParams } from "next/navigation";
 import { GET_THREAD } from "@/graphql/queries";
 import { useMutation, useQuery } from "@apollo/client";
@@ -12,14 +13,16 @@ import { CREATE_COMMENT } from "@/graphql/mutations";
 import { formatTimeStamp } from "@/utils/formatTimeStamp";
 
 export default function ThreadStream() {
-    const { data: session } = useSession();
+    const formRef = useRef<HTMLFormElement | null>(null);
+
     const { threadId } = useParams();
 
     const { data, refetch } = useQuery(GET_THREAD, {
         variables: { getThreadByIdId: threadId },
     });
-
     const [createComment] = useMutation(CREATE_COMMENT);
+
+    const { data: session } = useSession();
 
     const thread = data?.getThreadById;
 
@@ -36,7 +39,6 @@ export default function ThreadStream() {
                     authorId: session.user.id,
                 },
             });
-            formData.delete("content");
         } catch (error) {
             if (error instanceof Error) {
                 throw new Error(`Unable to create comment: ${error}`);
@@ -44,6 +46,7 @@ export default function ThreadStream() {
                 throw new Error("Unknown error unable to create comment");
             }
         } finally {
+            formRef.current?.reset();
             refetch();
         }
     };
@@ -94,7 +97,7 @@ export default function ThreadStream() {
                             </div>
                             <div className="w-full h-[1px] bg-neutral-500" />
                         </div>
-                        <form className="w-full" action={handleThreadSubmit}>
+                        <form className="w-full" action={handleThreadSubmit} ref={formRef}>
                             <div className="h-max flex py-3">
                                 <div className="flex-1 flex items-center gap-2">
                                     <div className="shrink-0 h-[40px] w-[40px] flex items-center justify-center relative rounded-full ">{thread.author.image ? <Image className="rounded-full" src={thread.author.image as string} layout="fill" objectFit="contain" alt="profile picture" /> : <FiUser size={35} />}</div>

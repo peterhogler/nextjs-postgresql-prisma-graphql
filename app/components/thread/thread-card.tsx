@@ -30,22 +30,22 @@ export default function ThreadCard({ thread }: ThreadCardProps) {
                             <div className="flex-1 flex items-center gap-24">
                                 <div className="inline-flex items-center gap-2 text-neutral-500 hover:text-blue-500">
                                     <FiMessageCircle size={21} />
-                                    <span>0</span>
+                                    <span>{thread.comments?.length}</span>
                                 </div>
                                 <div className="inline-flex items-center gap-2 text-neutral-500 hover:text-emerald-500">
                                     <FiCornerDownRight size={21} />
-                                    <span>1</span>
+                                    <span>0</span>
                                 </div>
                                 <div className="inline-flex items-center gap-2 text-neutral-500 hover:text-rose-600">
                                     <FaRegHeart size={19} />
                                     {/* <FaHeart /> */}
-                                    <span>1</span>
+                                    <span>0</span>
                                 </div>
                             </div>
                             <div>
                                 <div className="inline-flex items-center gap-2 text-neutral-500 hover:text-blue-500">
                                     <FiBookmark size={19} />
-                                    <span>1</span>
+                                    <span>0</span>
                                 </div>
                             </div>
                         </div>

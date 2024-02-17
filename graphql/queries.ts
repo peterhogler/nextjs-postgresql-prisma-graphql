@@ -4,15 +4,20 @@ export const GET_THREADS = gql`
     query Threads {
         threads {
             id
+            author {
+                email
+                id
+                image
+                name
+            }
             content
+            gif
             createdAt
             updatedAt
-            gif
-            author {
-                id
-                name
-                email
-                image
+            comments {
+                author {
+                    id
+                }
             }
         }
     }

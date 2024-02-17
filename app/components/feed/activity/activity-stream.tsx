@@ -15,7 +15,7 @@ export default function ActivityStream() {
     return (
         <>
             <CreatePostForm refetchThreads={refetch} />
-            {data?.threads && data?.threads.map((thread: Thread) => <ThreadCard key={thread.id} thread={thread} />)}
+            {data?.threads && data?.threads?.map((thread: Thread) => <ThreadCard key={thread.id} thread={thread} />)}
         </>
     );
 }
