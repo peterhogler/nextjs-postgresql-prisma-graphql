@@ -19,7 +19,7 @@ export default function ActivityStream() {
             {data?.threads &&
                 data?.threads?.map((thread: Thread) => {
                     console.log(thread);
-                    return <ThreadCard key={thread.id as string} thread={thread} refetch={refetch} />;
+                    return <ThreadCard key={thread?.id} thread={thread} refetch={refetch} />;
                 })}
         </>
     );
