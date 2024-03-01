@@ -19,6 +19,11 @@ export const GET_THREADS = gql`
                     id
                 }
             }
+            likes {
+                user {
+                    name
+                }
+            }
         }
     }
 `;

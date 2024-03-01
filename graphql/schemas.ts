@@ -12,6 +12,7 @@ export const typeDefs = `#graphql
         createdAt: String!
         updatedAt: String!
         comments: [Comment!]!
+        likes: [Like!]!
     }
 
     type User {
@@ -25,6 +26,7 @@ export const typeDefs = `#graphql
         updatedAt: String!
         threads: [Thread!]!
         comments: [Comment!]!
+        likedThreads: [Thread!]!
     }
     
     type Comment {
@@ -37,9 +39,18 @@ export const typeDefs = `#graphql
     }
 
 
+    type Like {
+        id: ID!
+        thread: Thread!
+        user: User!
+    }
+
     type Mutation {
         createThread(content: String!, gif: String, authorId: ID!): Thread
         createComment(content: String!, authorId: ID!, threadId: ID!): Comment
+        createLike(userId: ID!, threadId: ID!): Like
         getThreadById(id: String!): Thread
+        
     }
+
 `;

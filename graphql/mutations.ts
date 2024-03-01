@@ -31,3 +31,17 @@ export const CREATE_COMMENT = gql`
         }
     }
 `;
+
+export const CREATE_LIKE = gql`
+    mutation CreateLike($userId: ID!, $threadId: ID!) {
+        createLike(userId: $userId, threadId: $threadId) {
+            thread {
+                id
+            }
+            user {
+                id
+            }
+            id
+        }
+    }
+`;

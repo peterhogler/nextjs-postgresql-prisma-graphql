@@ -2,6 +2,7 @@
 
 generator client {
   provider = "prisma-client-js"
+  output   = "./generated/client"
 }
 
 datasource db {
@@ -52,6 +53,7 @@ model User {
   sessions Session[]
   thread   Thread[]
   comments Comment[]
+  likedThreads Like[]
 
   @@map("users")
 }
@@ -65,8 +67,9 @@ model Thread {
   updatedAt DateTime @updatedAt @map("updated_at")
 
   comments Comment[]
+  likes Like[]
 
-  author User @relation(fields: [userId], references: [id])
+  author User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Comment {
@@ -78,8 +81,20 @@ model Comment {
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
-  thread Thread @relation(fields: [threadId], references: [id])
-  author User   @relation(fields: [userId], references: [id])
+  thread Thread @relation(fields: [threadId], references: [id], onDelete: Cascade)
+  author User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Like {
+    id String @id @default(cuid())
+    userId String
+    threadId String
+
+    createdAt DateTime @default(now()) @map("created_at")
+    updatedAt DateTime @updatedAt @map("updated_at")
+
+    user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+    thread Thread @relation(fields: [threadId], references: [id], onDelete: Cascade)
 }
 
 model VerificationToken {
