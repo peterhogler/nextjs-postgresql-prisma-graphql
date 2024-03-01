@@ -13,7 +13,6 @@ export default function NavigationSidebar() {
     const [isProfileExpanded, setIsProfileExanded] = useState<boolean>(false);
     const { data: session, status } = useSession();
 
-    console.log(session?.user.image);
     return (
         <div className=" flex flex-col h-full pb-5 pt-2  w-[275px] ">
             <Link className="text-3xl px-3 mb-6 font-bold" href="/">
