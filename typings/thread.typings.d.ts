@@ -1,9 +1,9 @@
-import { Comment, Thread as IThread, Like, User } from "@prisma/client";
+import { Comment, Thread as IPrismaThread, Like, User } from "@prisma/client";
 
-interface Thread extends IThread {
-    author?: User;
-    comments?: Comment[];
-    likes?: Like[];
+interface Thread extends IPrismaThread {
+    author: User;
+    comments: Comment[];
+    likes: Like[];
 }
 
 interface ThreadCardProps {
