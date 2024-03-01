@@ -29,7 +29,6 @@ export default function GIFPickerComponent({ onGIFSelect }: { onGIFSelect: React
         const url = `https://tenor.googleapis.com/v2/search?q=${debouncedSearch}&key=${API_KEY}&client_key=${clientkey}&limit=30`;
         const response = await fetch(url, { signal });
         const { results } = await response.json();
-        // console.log(results);
         setSearchedGIF(results);
     };
 

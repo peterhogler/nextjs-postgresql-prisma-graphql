@@ -12,6 +12,8 @@ export default function ThreadCard({ thread, refetch }: ThreadCardProps) {
     const [createLike] = useMutation(CREATE_LIKE);
     const { data: session } = useSession();
 
+    console.log(thread);
+
     const handleLike = async (e: React.MouseEvent<HTMLDivElement>) => {
         e.preventDefault();
 
