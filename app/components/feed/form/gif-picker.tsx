@@ -15,6 +15,24 @@ export default function GIFPickerComponent({ onGIFSelect }: { onGIFSelect: React
 
     const debouncedSearch = useDebounce(search, 500);
 
+    const fetchCategories = async (signal: AbortSignal) => {
+        const url = `https://tenor.googleapis.com/v2/categories?key=${API_KEY}&client_key=${clientkey}&limit=30`;
+        const response = await fetch(url, {
+            signal,
+        });
+
+        const { tags } = await response.json();
+        setCategories(tags as Category[]);
+    };
+
+    const fetchGIF = async (signal: AbortSignal) => {
+        const url = `https://tenor.googleapis.com/v2/search?q=${debouncedSearch}&key=${API_KEY}&client_key=${clientkey}&limit=30`;
+        const response = await fetch(url, { signal });
+        const { results } = await response.json();
+        // console.log(results);
+        setSearchedGIF(results);
+    };
+
     useEffect(() => {
         if (!showGifPicker) return;
 
@@ -36,24 +54,6 @@ export default function GIFPickerComponent({ onGIFSelect }: { onGIFSelect: React
 
         fetchGIF(signal);
     }, [showGifPicker, debouncedSearch]);
-
-    const fetchCategories = async (signal: AbortSignal) => {
-        const url = `https://tenor.googleapis.com/v2/categories?key=${API_KEY}&client_key=${clientkey}&limit=30`;
-        const response = await fetch(url, {
-            signal,
-        });
-
-        const { tags } = await response.json();
-        setCategories(tags as Category[]);
-    };
-
-    const fetchGIF = async (signal: AbortSignal) => {
-        const url = `https://tenor.googleapis.com/v2/search?q=${debouncedSearch}&key=${API_KEY}&client_key=${clientkey}&limit=30`;
-        const response = await fetch(url, { signal });
-        const { results } = await response.json();
-        // console.log(results);
-        setSearchedGIF(results);
-    };
 
     return (
         <div className="relative">
