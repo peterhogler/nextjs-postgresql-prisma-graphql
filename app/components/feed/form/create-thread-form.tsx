@@ -6,8 +6,6 @@ import { useMutation } from "@apollo/client";
 import CreateThreadButton from "./create-thread-button";
 import EmojiPickerComponent from "./emoji-picker";
 import GIFPickerComponent from "./gif-picker";
-import { Gif, Video as GifVideo, VideoOverlay } from "@giphy/react-components";
-import { IGif } from "@giphy/js-types";
 import { IoClose } from "react-icons/io5";
 import { FiUser } from "react-icons/fi";
 import Image from "next/image";

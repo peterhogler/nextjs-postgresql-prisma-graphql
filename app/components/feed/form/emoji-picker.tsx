@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FiSmile, FiUser } from "react-icons/fi";
+import { FiSmile } from "react-icons/fi";
 import EmojiPicker from "@emoji-mart/react";
 
 export default function EmojiPickerComponent({ onThreadContentChange }: { onThreadContentChange: any }) {

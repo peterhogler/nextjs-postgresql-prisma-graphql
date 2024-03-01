@@ -1,5 +1,4 @@
-import Link from "next/link";
-import { FiBell, FiBookmark, FiHome, FiMessageCircle, FiMoreHorizontal, FiSearch, FiUser, FiUsers } from "react-icons/fi";
+import { FiSearch, FiUser } from "react-icons/fi";
 
 export default function TrendingSidebar() {
     return (
