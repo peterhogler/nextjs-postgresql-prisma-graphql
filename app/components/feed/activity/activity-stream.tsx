@@ -5,7 +5,7 @@ import { useQuery } from "@apollo/client";
 import ThreadCard from "../../thread/thread-card";
 
 import CreatePostForm from "../form/create-thread-form";
-import { Thread } from "@/prisma/generated/client";
+import { Thread } from "@/typings/thread.typings";
 
 export default function ActivityStream() {
     const { data, loading, error, refetch } = useQuery(GET_THREADS);
