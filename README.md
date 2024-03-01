@@ -1,4 +1,5 @@
 NextJS, TypeScript, PostgreSQL, Prisma, GraphQL, Tailwind
+https://x-clone-app-ylef.vercel.app/
 
 ## Getting Started
 
