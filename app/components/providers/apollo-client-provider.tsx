@@ -3,7 +3,7 @@
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 
 const client = new ApolloClient({
-    uri: "http://localhost:3000/api/graphql",
+    uri: "https://x-clone-app-ylef.vercel.app/api/graphql",
 
     cache: new InMemoryCache(),
 });
