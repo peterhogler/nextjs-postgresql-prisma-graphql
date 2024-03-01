@@ -5,7 +5,7 @@ import { useQuery } from "@apollo/client";
 import ThreadCard from "../../thread/thread-card";
 
 import CreatePostForm from "../form/create-thread-form";
-import { Thread } from "@/typings/thread.typings";
+import { Thread } from "@/prisma/generated/client";
 
 export default function ActivityStream() {
     const { data, loading, error, refetch } = useQuery(GET_THREADS);
@@ -18,6 +18,7 @@ export default function ActivityStream() {
             <CreatePostForm refetchThreads={refetch} />
             {data?.threads &&
                 data?.threads?.map((thread: Thread) => {
+                    console.log(thread);
                     return <ThreadCard key={thread.id} thread={thread} refetch={refetch} />;
                 })}
         </>
