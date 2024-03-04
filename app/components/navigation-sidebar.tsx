@@ -58,7 +58,7 @@ export default function NavigationSidebar() {
                 ) : (
                     <div className="flex flex-1 items-center gap-3 " onClick={() => setIsProfileExanded(!isProfileExpanded)}>
                         <div className="h-[40px] w-[40px] flex items-center justify-center border-[2.5px] rounded-full ">
-                            <FiUser size={35} />
+                            <FiUser size={25} />
                         </div>
                         <div className="hidden flex-1 lg:flex items-center justify-between leading-tight text-left">
                             <div>
@@ -71,7 +71,7 @@ export default function NavigationSidebar() {
                 )}
 
                 {isProfileExpanded && (
-                    <div className="absolute w-[max-content] lg:w-full bottom-[4.5rem] rounded-2xl py-4 shadow-white/20 shadow-sm">
+                    <div className="absolute w-[max-content] lg:w-full bottom-[4.5rem] rounded-2xl py-4 shadow-white/20 shadow-sm z-10">
                         {session ? (
                             <div className="px-4 py-2 hover:bg-neutral-900/40 font-bold cursor-pointer" onClick={() => signOut()}>
                                 Log out from {session?.user?.name}
