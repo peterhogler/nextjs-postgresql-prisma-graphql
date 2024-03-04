@@ -3,7 +3,7 @@ import ActivityStreamFilter from "./components/feed/activity/activity-stream-fil
 
 export default function Page() {
     return (
-        <div className="border-neutral-700 w-[605px]">
+        <div className="border-neutral-700 w-full lg:w-[605px]">
             <ActivityStreamFilter />
             <ActivityStream />
         </div>

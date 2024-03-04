@@ -23,11 +23,11 @@ export default async function RootLayout({
 
     return (
         <html lang="en">
-            <body className={`${karla.className} relative flex justify-center max-w-7xl m-auto`}>
+            <body className={`${karla.className} relative flex max-w-7xl m-auto`}>
                 <ApolloClientProvider>
                     <AuthProvider session={session}>
                         <NavigationSidebar />
-                        <main>{children}</main>
+                        <main className="flex-1">{children}</main>
                         <TrendingSidebar />
                     </AuthProvider>
                 </ApolloClientProvider>

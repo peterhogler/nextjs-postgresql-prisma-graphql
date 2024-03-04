@@ -14,46 +14,46 @@ export default function NavigationSidebar() {
     const { data: session, status } = useSession();
 
     return (
-        <div className=" flex flex-col h-full pb-5 pt-2  w-[275px] ">
-            <Link className="text-3xl px-3 mb-6 font-bold" href="/">
+        <div className=" flex flex-col items-center lg:items-start h-full pb-5 pt-2  lg:w-[275px] ">
+            <Link className="text-3xl lg:pl-3 lg:pr-5 py-2 px-2mb-3 lg:mb-4 font-bold" href="/">
                 X
             </Link>
             <div className="space-y-5 text-xl">
-                <button className="flex items-center gap-4 hover:bg-neutral-900 w-max pl-3 pr-5 py-2 rounded-full">
+                <button className="flex items-center gap-4 hover:bg-neutral-900 w-max lg:pl-3 lg:pr-5 py-2 px-2 rounded-full">
                     <FiHome size={25} />
-                    Home
+                    <span className="hidden lg:block">Home</span>
                 </button>
-                <button className="flex items-center gap-4 hover:bg-neutral-900 w-max pl-3 pr-5 py-2 rounded-full">
+                <button className="flex items-center gap-4 hover:bg-neutral-900 w-max lg:pl-3 lg:pr-5 py-2 px-2 rounded-full">
                     <FiSearch size={25} />
-                    Explore
+                    <span className="hidden lg:block">Explore</span>
                 </button>
-                <button className="flex items-center gap-4 hover:bg-neutral-900 w-max pl-3 pr-5 py-2 rounded-full">
+                <button className="flex items-center gap-4 hover:bg-neutral-900 w-max lg:pl-3 lg:pr-5 py-2 px-2 rounded-full">
                     <FiBookmark size={25} />
-                    Bookmarks
+                    <span className="hidden lg:block">Bookmarks</span>
                 </button>
-                <button className="flex items-center gap-4 hover:bg-neutral-900 w-max pl-3 pr-5 py-2 rounded-full">
+                <button className="flex items-center gap-4 hover:bg-neutral-900 w-max lg:pl-3 lg:pr-5 py-2 px-2 rounded-full">
                     <FiUsers size={25} />
-                    Communities
+                    <span className="hidden lg:block">Communities</span>
                 </button>
-                <button className="flex items-center gap-4 hover:bg-neutral-900 w-max pl-3 pr-5 py-2 rounded-full">
+                <button className="flex items-center gap-4 hover:bg-neutral-900 w-max lg:pl-3 lg:pr-5 py-2 px-2 rounded-full">
                     <FiUser size={25} />
-                    Profile
+                    <span className="hidden lg:block">Profile</span>
                 </button>
             </div>
-            <button className="font-bold text-xl bg-sky-500 w-4/5 py-2 mt-6 rounded-full disabled:opacity-40 disabled:cursor-not-allowed " disabled={!session}>
+            <button className="hidden lg:block font-bold text-xl bg-sky-500 w-4/5 py-2 mt-6 rounded-full disabled:opacity-40 disabled:cursor-not-allowed " disabled={!session}>
                 Post
             </button>
             <div className="relative flex w-[98%] items-center justify-between mt-auto  px-2 pr-5 py-2 rounded-full hover:bg-neutral-900/40" onClick={() => setIsProfileExanded(!isProfileExpanded)}>
                 {session ? (
                     <div className="flex flex-1 items-center gap-3 mt-auto ">
                         <div className="h-[45px] w-[45px] flex items-center justify-center relative rounded-full ">{session?.user?.image ? <Image className="rounded-full" src={session?.user?.image as string} layout="fill" objectFit="contain" alt="profile picture" /> : <FiUser size={35} />}</div>
-                        <div className="flex-1 flex items-center justify-between leading-tight text-left">
+                        <div className="flex-1 hidden lg:flex items-center justify-between leading-tight text-left">
                             <div>
                                 <p className=" font-bold">{session?.user?.name}</p>
                                 <p className="text-neutral-500">{session?.user.email}</p>
                             </div>
+                            <FiMoreHorizontal size={22} />
                         </div>
-                        <FiMoreHorizontal size={22} />
                     </div>
                 ) : (
                     <div className="flex flex-1 items-center gap-3 " onClick={() => setIsProfileExanded(!isProfileExpanded)}>

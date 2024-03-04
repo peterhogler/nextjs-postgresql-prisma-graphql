@@ -8,7 +8,7 @@
     }
 
     body {
-        @apply h-full flex max-w-7xl bg-black text-neutral-50  m-auto;
+        @apply h-full flex md:max-w-7xl bg-black text-neutral-50  m-auto;
     }
 
     input,

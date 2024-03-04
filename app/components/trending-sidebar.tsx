@@ -2,7 +2,7 @@ import { FiSearch, FiUser } from "react-icons/fi";
 
 export default function TrendingSidebar() {
     return (
-        <div className="  ml-7 p-1 w-[350px] space-y-4">
+        <div className="hidden lg:block ml-7 p-1 w-[350px] space-y-4">
             <div className="flex items-center gap-3 bg-neutral-900 px-4 py-3 rounded-full">
                 <label htmlFor="search">
                     <FiSearch size={20} />
