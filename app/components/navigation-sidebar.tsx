@@ -14,7 +14,7 @@ export default function NavigationSidebar() {
     const { data: session, status } = useSession();
 
     return (
-        <div className="static left-0 top-0 bottom-0 lg:static flex flex-col items-center lg:items-start h-full pb-5 pt-2 px-3 lg:px-0 lg:w-[275px] ">
+        <div className="hidden sm:flex flex-col items-center lg:items-start h-full pb-5 pt-2 px-3 lg:px-0 lg:w-[275px] ">
             <Link className="text-3xl lg:pl-3 lg:pr-5 py-2 px-2 mb-3 lg:mb-4 font-bold" href="/">
                 X
             </Link>
