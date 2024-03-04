@@ -71,7 +71,7 @@ export default function NavigationSidebar() {
                 )}
 
                 {isProfileExpanded && (
-                    <div className="absolute w-[max-content] lg:w-full bottom-[4.5rem] rounded-2xl py-4 shadow-white/20 shadow-sm z-10">
+                    <div className="absolute w-[max-content] lg:w-full bottom-[4.5rem] rounded-2xl py-4 shadow-white/20 shadow-sm z-10 bg-black">
                         {session ? (
                             <div className="px-4 py-2 hover:bg-neutral-900/40 font-bold cursor-pointer" onClick={() => signOut()}>
                                 Log out from {session?.user?.name}
